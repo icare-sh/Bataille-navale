@@ -3,7 +3,7 @@ Implementation d'un jeu de bataille navale en C
 
 ## Build et Run
 
-Il faut faire un ```make``` pour compiler le programme et ensuite lancer le programme avec la commande suivante:
+Il faut clone le repo et faire un ```make``` pour compiler le programme et ensuite lancer le programme avec la commande suivante:  
 
 ```bash
 ./bataille_navale
