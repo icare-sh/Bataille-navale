@@ -93,20 +93,53 @@ int ajoutBateau(int plateau[][5], int ligne, int colonne, int direction, int tai
 }
 
 int verfierBateau(int plateau[][5], int ligne, int colonne, int taille, int direction) {
-    int i;
-
-    if (direction == 0) {
-        for (i = 0; i < taille; i++) {
-            if (plateau[ligne][colonne + i] == 1 || plateau[ligne][colonne + i] != -1) {
-                return 1; // il y a un bateau ou un bateau touché sur la case
+    if (plateau[ligne][colonne] == 1) {
+        return 1;
+    } else {
+        if (direction == 0) {
+            for (int i = 0; i < taille; i++) {
+                if (colonne + i > 4 || plateau[ligne + i][colonne] == 1) {
+                    return 1;
+                }
+            }
+        } else if (direction == 1) {
+            for (int i = 0; i < taille; i++) {
+                if (ligne + i > 4 || plateau[ligne][colonne + i] == 1) {
+                    return 1;
+                }
             }
         }
-    } else if (direction == 1) {
-        for (i = 0; i < taille; i++) {
-            if (plateau[ligne + i][colonne] == 1 || plateau[ligne + i][colonne] != -1) {
-                return 1; // il y a un bateau ou un bateau touché sur la case
+        return 0;
+    }
+}
+
+int tire(int plateau[][5], int plateau_adversaire[][5], int ligne, int colonne) {
+    if (plateau[ligne][colonne] == 1) {
+        plateau_adversaire[ligne][colonne] = 2;
+        return 1; // touché
+    } else if (plateau[ligne][colonne] == -1) {
+        plateau_adversaire[ligne][colonne] = 0;
+        return 0; // Touché l'eau
+    } else {
+        return 2;
+    }
+}
+
+int finish(int plateau_adversaire[][5]) {
+    int cpt = 0;
+    for(int ligne = 0; ligne < 5; ligne++) {
+        for(int colonne = 0; colonne < 5; colonne++) {
+            if (plateau_adversaire[ligne][colonne] == 2) {
+                if (cpt < 10)
+                    cpt++;
             }
         }
     }
-    return 0;
+    if (cpt == 9) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
+
+//voir le cas de la direction

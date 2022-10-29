@@ -1,14 +1,6 @@
 # Bataille Navale
 
-B -1 -1 -1 -1 
-B -1 -1 -1 -1 
-B -1 -1 -1 -1 
--1 -1 -1 -1 -1 
--1 -1 -1 -1 -1 
+- bug sur la fonction qui verifie le placement des bateaux avec les differentes valeurs qu'on lui donne
+- bug sur la mise en place des bateaux de l'ordinateur: des fois il met deux bateaux au lieu de 3
+- refaire la gameplay et mettre bien les textes
 
-
-O -1 -1 -1 -1 
--1 -1 -1 -1 -1 
--1 -1 X -1 -1 
--1 -1 -1 -1 -1 
--1 -1 -1 -1 -1 
