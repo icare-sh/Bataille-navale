@@ -3,10 +3,11 @@
 #include <string.h>
 
 #include "game.h"
+#include "color.h"
 
 #define MAX 100
 
-void debutplateau(int plateau[][5]) //initialise le plateau
+void debutPlateau(int plateau[][5]) //initialise le plateau
 {
     int ligne, colonne;
     for (ligne = 0; ligne < 5; ligne++) //  0 1 2 3 4
@@ -14,9 +15,11 @@ void debutplateau(int plateau[][5]) //initialise le plateau
             plateau[ligne][colonne] = -1;
 }
 
-static void correspondanceLettres(void )
+void correspondanceLettres(void )
 {
+    blue();
     printf("\n## Correspondance des lettres ##\n\n");
+    reset();
     printf(" H -> Espace vide sur ton plateau \n");
     printf(" O -> Espace vide pour l'adverssaire \n");
     printf(" X -> Bateau touché \n");
@@ -24,25 +27,33 @@ static void correspondanceLettres(void )
     printf("\n\n");
 }
 
-void afficheplateau(int plateau[][5]) {
+void affichePlateau(int plateau[][5]) {
 
     int ligne, colonne;
 
-    correspondanceLettres();
-
+    violet();
     printf("\t0 \t1 \t2 \t3 \t4"); // 1 2 3 4 5
+    reset();
     printf("\n");
 
     for (ligne = 0; ligne < 5; ligne++) // for l 0 1 2 3 4
-    {
+    {   
+        violet();
         printf("%d", ligne);
+        reset();
         for (colonne = 0; colonne < 5; colonne++) {
             if (plateau[ligne][colonne] == -1) {
+                green();
                 printf("\tH");
+                reset();
             } else if (plateau[ligne][colonne] == 0) {
+                yellow();
                 printf("\tO");
+                reset();
             } else if (plateau[ligne][colonne] == 1) {
+                red();
                 printf("\tX");
+                reset();
             }
 
         }
