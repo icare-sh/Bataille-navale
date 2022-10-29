@@ -20,7 +20,7 @@ void correspondanceLettres(void )
     blue();
     printf("\n## Correspondance des lettres ##\n\n");
     reset();
-    printf(" H -> Espace vide sur ton plateau \n");
+    printf(" H -> Espace vide sur le plateau \n");
     printf(" O -> Espace vide pour l'adverssaire \n");
     printf(" X -> Bateau touché \n");
     printf(" B -> Bateau \n");
@@ -44,15 +44,19 @@ void affichePlateau(int plateau[][5]) {
         for (colonne = 0; colonne < 5; colonne++) {
             if (plateau[ligne][colonne] == -1) {
                 green();
-                printf("\tH");
+                printf("\tH"); // la mer
                 reset();
             } else if (plateau[ligne][colonne] == 0) {
                 yellow();
-                printf("\tO");
+                printf("\tO"); // Toucher l'eau
                 reset();
             } else if (plateau[ligne][colonne] == 1) {
                 red();
-                printf("\tX");
+                printf("\tB"); // Bateau
+                reset();
+            } else if (plateau[ligne][colonne] == 2) {
+                red();
+                printf("\tX"); // X = bateau touché
                 reset();
             }
 
@@ -60,4 +64,49 @@ void affichePlateau(int plateau[][5]) {
         printf("\n");
     }
 
+}
+
+int ajoutBateau(int plateau[][5], int ligne, int colonne, int direction, int taille) {
+    int i;
+    if (direction == 0) {
+        for (i = 0; i < taille; i++) {
+            if (plateau[ligne][colonne + i] == 1 ) {
+                return 0;
+                printf("Erreur lors de l'ajout du bateau.\n");
+            }
+        }
+        for (i = 0; i < taille; i++) {
+            plateau[ligne][colonne + i] = 1;
+        }
+    } else if (direction == 1) {
+        for (i = 0; i < taille; i++) {
+            if (plateau[ligne + i][colonne] == 1) {
+                return 0;
+                printf("Erreur lors de l'ajout du bateau.\n");
+            }
+        }
+        for (i = 0; i < taille; i++) {
+            plateau[ligne + i][colonne] = 1;
+        }
+    }
+    return 1;
+}
+
+int verfierBateau(int plateau[][5], int ligne, int colonne, int taille, int direction) {
+    int i;
+
+    if (direction == 0) {
+        for (i = 0; i < taille; i++) {
+            if (plateau[ligne][colonne + i] == 1 || plateau[ligne][colonne + i] != -1) {
+                return 1; // il y a un bateau ou un bateau touché sur la case
+            }
+        }
+    } else if (direction == 1) {
+        for (i = 0; i < taille; i++) {
+            if (plateau[ligne + i][colonne] == 1 || plateau[ligne + i][colonne] != -1) {
+                return 1; // il y a un bateau ou un bateau touché sur la case
+            }
+        }
+    }
+    return 0;
 }
