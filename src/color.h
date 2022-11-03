@@ -7,4 +7,5 @@ void blue();
 void yellow();
 void violet();
 void reset();
+void cyan();
 #endif

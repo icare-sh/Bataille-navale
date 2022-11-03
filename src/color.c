@@ -22,6 +22,9 @@ void violet () {
   printf("\033[0;35m");
 }
 
+void cyan () {
+  printf("\033[0;36m");
+}
 void reset () {
   printf("\033[0m");
 }

@@ -94,17 +94,17 @@ int ajoutBateau(int plateau[][5], int ligne, int colonne, int direction, int tai
 
 int verfierBateau(int plateau[][5], int ligne, int colonne, int taille, int direction) {
     if (plateau[ligne][colonne] == 1) {
-        return 1;
+        return 1; // il y a déjà un bateau
     } else {
         if (direction == 0) {
             for (int i = 0; i < taille; i++) {
-                if (colonne + i > 4 || plateau[ligne + i][colonne] == 1) {
+                if (colonne + i > 4 || (plateau[ligne + i][colonne] == 1 && ligne + i < 5) || (plateau[ligne][colonne + i] == 1  && colonne + i < 5)) {
                     return 1;
                 }
             }
         } else if (direction == 1) {
             for (int i = 0; i < taille; i++) {
-                if (ligne + i > 4 || plateau[ligne][colonne + i] == 1) {
+                if (ligne + i > 4 || (plateau[ligne][colonne + i] == 1 && colonne + i < 5) || (plateau[ligne + i][colonne] == 1 && ligne + i < 5)) {
                     return 1;
                 }
             }
@@ -141,5 +141,3 @@ int finish(int plateau_adversaire[][5]) {
         return 0;
     }
 }
-
-//voir le cas de la direction

@@ -20,7 +20,6 @@ void bateauOrdi(int plateau[][5]) //initialise le plateau
         ligne = rand() % 5;
         colonne = rand() % 5;
         direction = rand() % 2;
-       
         if (verfierBateau(plateau, ligne,colonne, cmp_taille, direction) == 0) {
             ajoutBateau(plateau, ligne, colonne, direction, cmp_taille);
             cmp_taille++;
